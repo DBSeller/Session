@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit  backupGlobals="true"
+          backupStaticAttributes="false"
+          bootstrap="tests/bootstrap.php"
+          colors="true"
+          convertErrorsToExceptions="false"
+          convertNoticesToExceptions="false"
+          convertWarningsToExceptions="false"
+          processIsolation="true"
+          stopOnFailure="false">
+  <testsuites>
+    <testsuite name="DBSeller Session Tests">
+      <directory>tests/</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>

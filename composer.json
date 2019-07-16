@@ -1,0 +1,21 @@
+{
+  "name": "dbseller/session",
+  "description": "Session manager package.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "John R.",
+      "email": "john.reis@dbseller.com.br"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "src/session"
+    ]
+  },
+  "minimum-stability": "dev",
+  "require-dev": {
+    "phpunit/phpunit": "^4.8||^5.4"
+  }
+}
