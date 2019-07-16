@@ -8,5 +8,5 @@
 ## Usage:
 ```php
 $session = DBseller\Session\Session::getInstance()->start()
-$session->
+$session->addParameters(['PARAM_TO' => 'SESSION'])
 ```
