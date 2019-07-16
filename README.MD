@@ -5,7 +5,7 @@ Session manager package.
 
 ## Install
 ```bash
-# composer require dbseller/session
+$ composer require dbseller/session
 ```
 
 ## Usage:
