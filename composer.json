@@ -10,9 +10,10 @@
     }
   ],
   "autoload": {
-    "classmap": [
-      "src/session"
-    ]
+    "psr-4": {
+      "DBSeller\\Session\\": "src/Session",
+      "DBSeller\\Session\\Tests\\": "tests/Session"
+    }
   },
   "minimum-stability": "dev",
   "require-dev": {

@@ -1,6 +1,9 @@
 <?php
 
+namespace DBSeller\Session\Tests;
+
 use DBSeller\Session\Session;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class SessionTest extends TestCase
