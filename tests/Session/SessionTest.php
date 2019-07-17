@@ -5,6 +5,7 @@ namespace DBSeller\Session\Tests;
 use DBSeller\Session\Session;
 use Exception;
 use PHPUnit\Framework\TestCase;
+use function Sodium\add;
 
 class SessionTest extends TestCase
 {
@@ -60,6 +61,23 @@ class SessionTest extends TestCase
             ->destroy();
 
         self::assertTrue(session_status() === PHP_SESSION_NONE);
+    }
+
+    /**
+     * @dataProvider provideData
+     * @throws Exception
+     */
+    function testReplaceSessionData($data)
+    {
+        Session::getInstance()
+            ->add($data)
+            ->start()
+            ->replace(array(
+                'NEW_DATA' => 'TO_SESSION'
+            ));
+
+        self::assertTrue(array_key_exists('NEW_DATA', $_SESSION));
+        self::assertTrue(!array_key_exists('VAR_1', $_SESSION));
     }
 
     function provideData()

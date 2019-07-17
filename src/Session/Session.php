@@ -150,7 +150,7 @@ class Session
      * @param array $data
      * @return $this
      */
-    private function replace(array $data = array())
+    public function replace(array $data = array())
     {
         $this->data = $data;
         return $this;
@@ -164,6 +164,7 @@ class Session
     {
         if (!$this->writable() && $this->status === Session::NONE) {
             $_SESSION = $this->getCurrentSessionData();
+            $_SESSION = array_merge($_SESSION, $this->data);
             $this->replace($_SESSION);
             $this->status = Session::ACTIVE;
 
@@ -178,6 +179,7 @@ class Session
 
             session_start();
             $this->status = Session::ACTIVE;
+            $_SESSION = array_merge($_SESSION, $this->data);
             $this->data =& $_SESSION;
         }
 
