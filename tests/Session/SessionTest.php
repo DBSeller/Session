@@ -5,14 +5,13 @@ namespace DBSeller\Session\Tests;
 use DBSeller\Session\Session;
 use Exception;
 use PHPUnit\Framework\TestCase;
-use function Sodium\add;
 
 class SessionTest extends TestCase
 {
     /**
      * @throws Exception
      */
-    function testShouldStartSession()
+    public function testShouldStartSession()
     {
         Session::getInstance()
             ->start();
@@ -25,7 +24,7 @@ class SessionTest extends TestCase
      * @param array $data
      * @throws Exception
      */
-    function testAddParameters($data)
+    public function testShouldAddParameters($data)
     {
         Session::getInstance()
             ->start()
@@ -40,7 +39,7 @@ class SessionTest extends TestCase
      * @param $data
      * @throws Exception
      */
-    function testRemoveParameters($data)
+    public function testShouldRemoveParameters($data)
     {
         Session::getInstance()
             ->start()
@@ -54,7 +53,7 @@ class SessionTest extends TestCase
     /**
      * @throws Exception
      */
-    function testDestroySession()
+    public function testShouldDestroySession()
     {
         Session::getInstance()
             ->start()
@@ -67,7 +66,7 @@ class SessionTest extends TestCase
      * @dataProvider provideData
      * @throws Exception
      */
-    function testReplaceSessionData($data)
+    public function testShouldReplaceSessionData($data)
     {
         Session::getInstance()
             ->add($data)
@@ -80,7 +79,49 @@ class SessionTest extends TestCase
         self::assertTrue(!array_key_exists('VAR_1', $_SESSION));
     }
 
-    function provideData()
+    /**
+     * @dataProvider provideData
+     * @param array $data
+     * @throws Exception
+     */
+    public function testShouldGetSessionParameters($data)
+    {
+        $session = Session::getInstance()
+            ->add($data)
+            ->start();
+
+        self::assertEquals('TO_SESSION_1', $session->get('VAR_1'));
+        self::assertEquals('TO_SESSION_1', $_SESSION['VAR_1']);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testShouldSetSessionParameters()
+    {
+        $session = Session::getInstance()
+            ->start()
+            ->set('VAR_1', 'TO_SESSION_1');
+
+        self::assertEquals('TO_SESSION_1', $_SESSION['VAR_1']);
+        self::assertEquals('TO_SESSION_1', $session->get('VAR_1'));
+    }
+
+    /**
+     * @dataProvider provideData
+     * @param $data
+     * @throws Exception
+     */
+    public function testShouldParseSessionToJson($data)
+    {
+        $session = Session::getInstance()
+            ->add($data)
+            ->start();
+
+        self::assertEquals(json_encode($data), $session->toJSON());
+    }
+
+    public function provideData()
     {
         return array(
             array('data' =>

@@ -78,7 +78,6 @@ class Session
      */
     public function name($name = null)
     {
-
         if (!is_null($name)) {
             session_name($name);
             return $this;
@@ -91,7 +90,6 @@ class Session
      */
     public function destroy()
     {
-
         if ($this->writable()) {
             session_destroy();
         }
@@ -103,7 +101,6 @@ class Session
      */
     public function close()
     {
-
         if ($this->writable()) {
             session_write_close();
         }
@@ -116,7 +113,6 @@ class Session
      */
     private function getCurrentSessionData()
     {
-
         $result = array();
         $path = session_save_path() . DIRECTORY_SEPARATOR . 'sess_' . $this->id();
 
@@ -200,7 +196,6 @@ class Session
      */
     public function writable($writable = null)
     {
-
         if ($writable === null) {
             return $this->writable;
         }
@@ -231,18 +226,18 @@ class Session
     }
 
     /**
-     * @param $key
+     * @param  $key
      * @param null $default
      * @return mixed|null
      */
-    private function get($key, $default = null)
+    public function get($key, $default = null)
     {
         return array_key_exists($key, $this->data) ? $this->data[$key] : $default;
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param  $key
+     * @param  $value
      * @return $this
      */
     public function set($key, $value)
@@ -268,7 +263,7 @@ class Session
     }
 
     /**
-     * @param $key
+     * @param  $key
      * @return bool
      */
     public function has($key)
@@ -285,7 +280,7 @@ class Session
     }
 
     /**
-     * @param $value
+     * @param  $value
      * @return bool
      */
     public function contains($value)
@@ -294,7 +289,7 @@ class Session
     }
 
     /**
-     * @param $key
+     * @param  $key
      * @return $this
      */
     public function remove($key)
@@ -310,7 +305,6 @@ class Session
      */
     public function flash($message = null, $type = '')
     {
-
         if (empty($message)) {
             $flash = $this->get('flash');
             $this->remove('flash');

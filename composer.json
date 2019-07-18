@@ -9,6 +9,9 @@
       "email": "john.reis@dbseller.com.br"
     }
   ],
+  "scripts": {
+    "test": "./vendor/bin/phpunit --whitelist src/ --coverage-html cover/"
+  },
   "autoload": {
     "psr-4": {
       "DBSeller\\Session\\": "src/Session",
